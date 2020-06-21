@@ -11,6 +11,9 @@ var animateCanvasWidth = null;
 var animateCanvasHeight = null;
 var animateSpeeds = [100, 50, 25, 10, 5];
 var animateSpeedIndex = 0;
+var firstPointColor = '#d60542';
+var allPointsColor = '#042278';
+var animatedLineColor= '#a87fff';
 
 var animatedtriangle = {};
 animatedtriangle.running = true;
@@ -23,18 +26,18 @@ animatedtriangle.ctx_upper = animatedtriangle.canvas_upper.getContext('2d');
 animatedtriangle.ctx_upper.lineCap = "round";
 animatedtriangle.canvasData_upper = animatedtriangle.ctx_upper.getImageData(0, 0, animatedtriangle.canvas_upper.width, animatedtriangle.canvas_upper.height);
 animatedtriangle.vertices = [
-          {'x': 100,'y': 350},
-          {'x': 400,'y': 50},
-          {'x': 700,'y': 350}
+          {'x': 96,'y': 622},
+          {'x': 500,'y': 78},
+          {'x': 908,'y': 622}
         ];
-animatedtriangle.epochs = 5000;
+animatedtriangle.epochs = 9999;
 
 
 function runAnimatedTriangle() {
-  var xMin = 100;
-  var xMax = 700;
-  var yMin = null;
-  var yMax = 350;
+  var xMin = animatedtriangle.vertices[0].x; // left most vertex
+  var xMax = animatedtriangle.vertices[2].x; // right most vertex
+  var yMin = null; // Find y min after picking random x
+  var yMax = animatedtriangle.vertices[0].y; // bottom of triangle
   var xRand = null;
   var yRand = null;
 
@@ -72,13 +75,14 @@ function runAnimatedTriangle() {
 
   // Draw Triangle
   drawByPoints(animatedtriangle.canvas_lower, animatedtriangle.ctx_lower, animatedtriangle.vertices, false);
-  animatedtriangle.ctx_lower.fillStyle = '#e69af7';
+  // First point color
+  animatedtriangle.ctx_lower.fillStyle = firstPointColor;
 
   // Draw the Random Starting point. It's 3x3 pixel rectangle vs 1x1 so it's ease to see;
   animatedtriangle.ctx_lower.fillRect(xRand-2,yRand-2,4,4);
 
   // Set color for all other points
-  animatedtriangle.ctx_lower.fillStyle = '#488fe0';
+  animatedtriangle.ctx_lower.fillStyle = allPointsColor;
 
   var currentPoint = {'x':xRand, 'y':yRand};
   var randomPolygonVertex = animatedtriangle.vertices[Math.floor(Math.random() * animatedtriangle.vertices.length)];
@@ -94,7 +98,7 @@ function runAnimatedTriangle() {
   animateCanvasHeight = animatedtriangle.canvas_upper.height;
 
   // Animation line color
-  animateCtx.strokeStyle = '#37f1ac';
+  animateCtx.strokeStyle = animatedLineColor;
   animate();
 
 }

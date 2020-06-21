@@ -38,13 +38,30 @@ pentagon.ctx = pentagon.canvas.getContext('2d');
 pentagon.ctx.lineCap = 'round';
 pentagon.canvasData = pentagon.ctx.getImageData(0, 0, pentagon.canvas.width, pentagon.canvas.height);
 pentagon.vertices = [
-          {'x': 200,'y': 225},
-          {'x': 300,'y': 400},
-          {'x': 500,'y': 400},
-          {'x': 600,'y': 225},
-          {'x': 400,'y': 100}
+          {'x': 400,'y': 80},
+          {'x': 631,'y': 248},
+          {'x': 543,'y': 520},
+          {'x': 257,'y': 520},
+          {'x': 169,'y': 248}
         ];
 pentagon.epochs = 1000;
+
+
+var hexagon = {};
+hexagon.running = false;
+hexagon.canvas = document.getElementById('js-canvas-hexagon');
+hexagon.ctx = hexagon.canvas.getContext('2d');
+hexagon.ctx.lineCap = 'round';
+hexagon.canvasData = hexagon.ctx.getImageData(0, 0, hexagon.canvas.width, hexagon.canvas.height);
+hexagon.vertices = [
+          {'x': 400,'y': 102},
+          {'x': 224,'y': 198},
+          {'x': 224,'y': 390},
+          {'x': 400,'y': 486},
+          {'x': 576,'y': 390},
+          {'x': 576,'y': 198}
+        ];
+hexagon.epochs = 1000;
 
 
 function getCursorPosition(event, canvas){
@@ -127,7 +144,8 @@ function updateCanvas(ctx, canvasData) {
 }
 
 
-function run(point, polygonObj) {
+function run(point, polygonObj, repeatLastVertex = true) {
+  console.log('Repeat last vertex: ', repeatLastVertex);
   // Pixel color
   let r = 72;
   let g = 143;
@@ -140,11 +158,16 @@ function run(point, polygonObj) {
     console.log('Epochs: '+polygonObj.epochs);
     var currentPoint = point;
 
+    var perviousPolygonVertex = polygonObj.vertices[Math.floor(Math.random() * polygonObj.vertices.length)];
     for (var i = 0; i < polygonObj.epochs; i++) {
       drawPixel(polygonObj.canvas, polygonObj.ctx, polygonObj.canvasData, currentPoint.x, currentPoint.y, r, g, b, a);
-
-      var randomPolygonPoint = polygonObj.vertices[Math.floor(Math.random() * polygonObj.vertices.length)];
-      currentPoint = calcMidpoint(currentPoint, randomPolygonPoint);
+      var randomPolygonVertex = polygonObj.vertices[Math.floor(Math.random() * polygonObj.vertices.length)];
+      if (!repeatLastVertex) {
+        while (perviousPolygonVertex == randomPolygonVertex) {
+          randomPolygonVertex = polygonObj.vertices[Math.floor(Math.random() * polygonObj.vertices.length)];
+        }
+      }
+      currentPoint = calcMidpoint(currentPoint, randomPolygonVertex);
       var currentX = Math.floor(currentPoint.x);
       var currentY = Math.floor(currentPoint.y);
       currentPoint = {'x':currentX, 'y':currentY};
@@ -177,10 +200,11 @@ $('#js-btn-drawTriangle').click(function(event) {
   var mousePoint = getCursorPosition(event.originalEvent, triangle.canvas);
 
   triangle.epochs = $('#js-input-triangle-epochs').val();
+  triangle.repeatLastVertex = $('#js-input-triangle-repeatLastVertex').is(":checked");
 
   console.log(mousePoint);
 
-  run(mousePoint, triangle);
+  run(mousePoint, triangle, triangle.repeatLastVertex);
 });
 
 
@@ -204,10 +228,11 @@ $('#js-canvas-rectangle').click(function(event) {
   var mousePoint = getCursorPosition(event.originalEvent, rectangle.canvas);
 
   rectangle.epochs = $('#js-input-rectangle-epochs').val();
+  rectangle.repeatLastVertex = $('#js-input-rectangle-repeatLastVertex').is(":checked");
 
   console.log(mousePoint);
 
-  run(mousePoint, rectangle);
+  run(mousePoint, rectangle, rectangle.repeatLastVertex);
 });
 
 
@@ -231,13 +256,43 @@ $('#js-canvas-pentagon').click(function(event) {
   var mousePoint = getCursorPosition(event.originalEvent, pentagon.canvas);
 
   pentagon.epochs = $('#js-input-pentagon-epochs').val();
+  pentagon.repeatLastVertex = $('#js-input-pentagon-repeatLastVertex').is(":checked");
 
   console.log(mousePoint);
 
-  run(mousePoint, pentagon);
+  run(mousePoint, pentagon, pentagon.repeatLastVertex);
+});
+
+
+$('#js-btn-drawHexagon').click(function(event) {
+  event.preventDefault();
+
+  let numVertices = hexagon.vertices.length;
+  for (var i = 0; i < numVertices; i++) {
+    hexagon.vertices[i].x = Math.floor($('#js-input-pentagon-x'+i).val());
+    hexagon.vertices[i].y = Math.floor($('#js-input-pentagon-y'+i).val());
+  }
+
+  drawByPoints(pentagon.canvas, pentagon.ctx, pentagon.vertices, true);
+});
+
+
+$('#js-canvas-hexagon').click(function(event) {
+  event.preventDefault()
+  console.log(event);
+
+  var mousePoint = getCursorPosition(event.originalEvent, hexagon.canvas);
+
+  hexagon.epochs = $('#js-input-hexagon-epochs').val();
+  hexagon.repeatLastVertex = $('#js-input-hexagon-repeatLastVertex').is(":checked");
+
+  console.log(mousePoint);
+
+  run(mousePoint, hexagon, hexagon.repeatLastVertex);
 });
 
 
 drawByPoints(triangle.canvas, triangle.ctx, triangle.vertices, true);
 drawByPoints(rectangle.canvas, rectangle.ctx, rectangle.vertices, true);
 drawByPoints(pentagon.canvas, pentagon.ctx, pentagon.vertices, true);
+drawByPoints(hexagon.canvas, hexagon.ctx, hexagon.vertices, true);

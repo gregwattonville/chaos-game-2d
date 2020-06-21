@@ -32,6 +32,9 @@
   	        </li>
   	        <li class="nav-item">
   	          <a class="nav-link" href="#pentagon">Pentagon</a>
+			</li>
+			<li class="nav-item">
+  	          <a class="nav-link" href="#hexagon">Hexagon</a>
   	        </li>
   	      </ul>
   	    </nav>
@@ -44,8 +47,8 @@
 
   	<div class="text-center" style="position: relative;">
   		<div style="position: relative;">
-  			<canvas class="canvas-border" id="js-canvas-triangle-example-lower" width="800" height="400" style="position:absolute; z-index: 0;"></canvas>
-  			<canvas id="js-canvas-triangle-example-upper" width="800" height="400" style="z-index: 1; margin: 0 auto 30px; border:1px solid #000000;"></canvas>
+  			<canvas class="canvas-border" id="js-canvas-triangle-example-lower" width="1000" height="700" style="position:absolute; z-index: 0;"></canvas>
+  			<canvas id="js-canvas-triangle-example-upper" width="1000" height="700" style="z-index: 1; margin: 0 auto 30px; border:1px solid #000000;"></canvas>
   		</div>
   	</div>
   	<p class="text-center next-section">
@@ -68,11 +71,16 @@
   		  		<p class="text-center">Click in the triangle to start</p>
 
   		  		<div class="form-group row">
-  					  <label for="epochs-number-input" class="col-2 col-form-label">Epochs</label>
-  						<div class="col-8 offset-1">
-  						  <input class="form-control" type="number" value="1000" id="js-input-triangle-epochs">
-  						</div>
-  					</div>
+					<label for="epochs-number-input" class="col-2 col-form-label">Epochs</label>
+					<div class="col-8 offset-1">
+						<input class="form-control" type="number" value="1000" id="js-input-triangle-epochs">
+					</div>
+				</div>
+				<p class="text-center">
+					<label for="checkbox">
+						<input type="checkbox" name="repeatLastVertex" id="js-input-triangle-repeatLastVertex" checked> Repeat last vertex
+					</label>
+				</p>
 
   				<table class="table table-bordered">
   				  <thead>
@@ -127,11 +135,16 @@
   		  		<p class="text-center">Click in the square to start</p>
 
   		  		<div class="form-group row">
-    				  <label for="epochs-number-input" class="col-2 col-form-label">Epochs</label>
-    					<div class="col-8 offset-1">
-    					  <input class="form-control" type="number" value="1000" id="js-input-rectangle-epochs">
-    					</div>
-    				</div>
+					<label for="epochs-number-input" class="col-2 col-form-label">Epochs</label>
+					<div class="col-8 offset-1">
+						<input class="form-control" type="number" value="1000" id="js-input-rectangle-epochs">
+					</div>
+				</div>
+				<p class="text-center">
+					<label for="checkbox">
+						<input type="checkbox" name="repeatLastVertex" id="js-input-rectangle-repeatLastVertex" checked> Repeat last vertex
+					</label>
+				</p>
 
   				<table class="table table-bordered">
   				  <thead>
@@ -158,20 +171,20 @@
   				      <td><input id="js-input-rectangle-y3" class="form-control" type="number" value="100" min="0" max="600" step="1"></td>
   				    </tr>
   				  </tbody>
-  				</table>
-          <p class="text-center">
-            <button id="js-btn-drawRectangle" type="button" class="btn btn-primary" style="margin-bottom: 1.5em">Draw</button>
-          </p>
+				</table>
+			<p class="text-center">
+				<button id="js-btn-drawRectangle" type="button" class="btn btn-primary" style="margin-bottom: 1.5em">Draw</button>
+			</p>
 
-  		  	</div> <!-- END col-4 -->
+			</div> <!-- END col-4 -->
 
-  		  	<div class="col-lg-7">
-      			<canvas class="canvas-border" id="js-canvas-rectangle" width="800" height="600" style="display: block; margin: 0 auto; border:1px solid #000000"></canvas>
-  			</div> <!-- END col -->
+			<div class="col-lg-7">
+				<canvas class="canvas-border" id="js-canvas-rectangle" width="800" height="600" style="display: block; margin: 0 auto; border:1px solid #000000"></canvas>
+			</div> <!-- END col -->
 
-  	  	</div> <!-- END Row -->
-  	 </div><!-- END Container -->
-    </section>
+		</div> <!-- END Row -->
+		</div><!-- END Container -->
+	</section>
 
     <p class="text-center next-section text-muted">
       <i class="fa fa-chevron-down fa-2" aria-hidden="true"></i>
@@ -187,11 +200,16 @@
   		  		<p class="text-center">Click in the pentagon to start</p>
 
   		  		<div class="form-group row">
-  				    <label for="epochs-number-input" class="col-2 col-form-label">Epochs</label>
-    					<div class="col-8 offset-1">
-    					  <input class="form-control" type="number" value="1000" id="js-input-pentagon-epochs">
-    					</div>
-    				</div>
+					<label for="epochs-number-input" class="col-2 col-form-label">Epochs</label>
+					<div class="col-8 offset-1">
+						<input class="form-control" type="number" value="1000" id="js-input-pentagon-epochs">
+					</div>
+				</div>
+				<p class="text-center">
+					<label for="checkbox">
+						<input type="checkbox" name="repeatLastVertex" id="js-input-pentagon-repeatLastVertex" checked> Repeat last vertex
+					</label>
+				</p>
 
   				<table class="table table-bordered">
   				  <thead>
@@ -202,24 +220,24 @@
   				  </thead>
   				  <tbody>
   				    <tr>
-  				      <td><input id="js-input-pentagon-x0" class="form-control" type="number" value="200" min="0" max="800" step="1"></td>
-  				      <td><input id="js-input-pentagon-y0" class="form-control" type="number" value="225" min="0" max="600" step="1"></td>
+  				      <td><input id="js-input-pentagon-x0" class="form-control" type="number" value="400" min="0" max="800" step="1"></td>
+  				      <td><input id="js-input-pentagon-y0" class="form-control" type="number" value="80" min="0" max="600" step="1"></td>
   				    </tr>
   				    <tr>
-  				      <td><input id="js-input-pentagon-x1" class="form-control" type="number" value="300" min="0" max="800" step="1"></td>
-  				      <td><input id="js-input-pentagon-y1" class="form-control" type="number" value="400" min="0" max="600" step="1"></td>
+  				      <td><input id="js-input-pentagon-x1" class="form-control" type="number" value="631" min="0" max="800" step="1"></td>
+  				      <td><input id="js-input-pentagon-y1" class="form-control" type="number" value="248" min="0" max="600" step="1"></td>
   				    </tr>
   				    <tr>
-  				      <td><input id="js-input-pentagon-x2" class="form-control" type="number" value="500" min="0" max="800" step="1"></td>
-  				      <td><input id="js-input-pentagon-y2" class="form-control" type="number" value="400" min="0" max="600" step="1"></td>
+  				      <td><input id="js-input-pentagon-x2" class="form-control" type="number" value="543" min="0" max="800" step="1"></td>
+  				      <td><input id="js-input-pentagon-y2" class="form-control" type="number" value="520" min="0" max="600" step="1"></td>
   				    </tr>
   				    <tr>
-  				      <td><input id="js-input-pentagon-x3" class="form-control" type="number" value="600" min="0" max="800" step="1"></td>
-  				      <td><input id="js-input-pentagon-y3" class="form-control" type="number" value="225" min="0" max="600" step="1"></td>
+  				      <td><input id="js-input-pentagon-x3" class="form-control" type="number" value="257" min="0" max="800" step="1"></td>
+  				      <td><input id="js-input-pentagon-y3" class="form-control" type="number" value="520" min="0" max="600" step="1"></td>
   				    </tr>
   				    <tr>
-  				      <td><input id="js-input-pentagon-x4" class="form-control" type="number" value="400" min="0" max="800" step="1"></td>
-  				      <td><input id="js-input-pentagon-y4" class="form-control" type="number" value="100" min="0" max="600" step="1"></td>
+  				      <td><input id="js-input-pentagon-x4" class="form-control" type="number" value="169" min="0" max="800" step="1"></td>
+  				      <td><input id="js-input-pentagon-y4" class="form-control" type="number" value="248" min="0" max="600" step="1"></td>
   				    </tr>
   				  </tbody>
   				</table>
@@ -231,6 +249,78 @@
 
   		  	<div class="col-lg-7">
       			<canvas class="canvas-border" id="js-canvas-pentagon" width="800" height="600" style="display: block; margin: 0 auto; border:1px solid #000000"></canvas>
+  		  	</div> <!-- END col-8 -->
+
+  	  	</div> <!-- END Row -->
+  	 </div><!-- END Container -->
+	</section>
+
+	<p class="text-center next-section text-muted">
+		<i class="fa fa-chevron-down fa-2" aria-hidden="true"></i>
+	</p>
+	
+	<section class="next-section" id="hexagon">
+    	<div class="container-fluid pt-3">
+    		<div class="row">
+  		  	<div class="col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-3 offset-lg-1">
+  		  		<h3 class="text-center">Hexagon</h3>
+  		  		<hr>
+  		  		<p class="text-center">Click in the hexagon to start</p>
+
+  		  		<div class="form-group row">
+					<label for="epochs-number-input" class="col-2 col-form-label">Epochs</label>
+					<div class="col-8 offset-1">
+						<input class="form-control" type="number" value="1000" id="js-input-hexagon-epochs">
+					</div>
+				</div>
+				<p class="text-center">
+					<label for="checkbox">
+						<input type="checkbox" name="repeatLastVertex" id="js-input-hexagon-repeatLastVertex" checked> Repeat last vertex
+					</label>
+				</p>
+
+  				<table class="table table-bordered">
+  				  <thead>
+  				    <tr class="table-active">
+  				      <th class="text-center">X</th>
+  				      <th class="text-center">Y</th>
+  				    </tr>
+  				  </thead>
+  				  <tbody>
+  				    <tr>
+  				      <td><input id="js-input-hexagon-x0" class="form-control" type="number" value="400" min="0" max="800" step="1"></td>
+  				      <td><input id="js-input-hexagon-y0" class="form-control" type="number" value="102" min="0" max="600" step="1"></td>
+  				    </tr>
+  				    <tr>
+  				      <td><input id="js-input-hexagon-x1" class="form-control" type="number" value="224" min="0" max="800" step="1"></td>
+  				      <td><input id="js-input-hexagon-y1" class="form-control" type="number" value="198" min="0" max="600" step="1"></td>
+  				    </tr>
+  				    <tr>
+  				      <td><input id="js-input-hexagon-x2" class="form-control" type="number" value="224" min="0" max="800" step="1"></td>
+  				      <td><input id="js-input-hexagon-y2" class="form-control" type="number" value="390" min="0" max="600" step="1"></td>
+  				    </tr>
+  				    <tr>
+  				      <td><input id="js-input-hexagon-x3" class="form-control" type="number" value="400" min="0" max="800" step="1"></td>
+  				      <td><input id="js-input-hexagon-y3" class="form-control" type="number" value="486" min="0" max="600" step="1"></td>
+  				    </tr>
+  				    <tr>
+  				      <td><input id="js-input-hexagon-x4" class="form-control" type="number" value="576" min="0" max="800" step="1"></td>
+  				      <td><input id="js-input-hexagon-y4" class="form-control" type="number" value="390" min="0" max="600" step="1"></td>
+					</tr>
+					<tr>
+  				      <td><input id="js-input-hexagon-x5" class="form-control" type="number" value="576" min="0" max="800" step="1"></td>
+  				      <td><input id="js-input-hexagon-y5" class="form-control" type="number" value="198" min="0" max="600" step="1"></td>
+					</tr>
+  				  </tbody>
+  				</table>
+          <p class="text-center">
+            <button id="js-btn-drawHexagon" type="button" class="btn btn-primary" style="margin-bottom: 1.5em">Draw</button>
+          </p>
+
+  		  </div> <!-- END col-->
+
+  		  	<div class="col-lg-7">
+      			<canvas class="canvas-border" id="js-canvas-hexagon" width="800" height="600" style="display: block; margin: 0 auto; border:1px solid #000000"></canvas>
   		  	</div> <!-- END col-8 -->
 
   	  	</div> <!-- END Row -->
