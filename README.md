@@ -14,10 +14,6 @@ This project was inspired by the youtube video: [Playing the Chaos Game (Sierpin
 
 As a teacher, I wanted the opportunity for students to explore the methods of Chaos Game. Seeing it animated and having the opportunity to explore what happens when applied to different shapes opens up new perpectives and mathematical discorse in the classroom.
 
-## Tags
-
-HTML5, javascript, canvas, animation.
-
 ## License
 
 [MIT](LICENSE)
