@@ -1,6 +1,6 @@
 # [Chaos Game 2D](https://gregwattonville.github.io/chaos-game-2d/)
 
-![Chaos Game Triangle](images/chaosGameTriangle5000.png)
+![Chaos Game Triangle](images/chaosGameTriangle5000-2.png)
 
 A 2D animation of the [Chaos Game](https://en.wikipedia.org/wiki/Chaos_game) mathematics method of creating a fractal. A random initial point is chosen inside the triangle followed by selecting a random corner. A new point is then placed at the midpoint between the random initial point and the random corner. Using the midpoint a new corner is chosen at random and the midpoint between these two is found creating a new point. The process is repeated greatly and the result is a Sierpinski triangle.
 
